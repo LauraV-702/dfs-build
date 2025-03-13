@@ -14,7 +14,35 @@ public class Build {
    * @param k the maximum word length (exclusive)
    */
   public static void printShortWords(Vertex<String> vertex, int k) {
+   
+    if (vertex == null) return;
+
+    Set<Vertex<String>> visited = new HashSet<>();
+    printShortWordsHelper(vertex, k, visited);
+
   }
+  
+  public static void printShortWordsHelper(Vertex<String> vertex, int k, Set<Vertex<String>> visited) {
+    //base case
+    if (vertex == null) return;
+    if (visited.contains(vertex)) return;
+
+    //current vertex as visited
+    visited.add(vertex);
+
+    //check is word is shorter than k
+    String word = vertex.data; 
+    if (word.length() < k) {
+      System.out.println(word);
+    }
+
+    //recursively visit adjacent vertices
+    for (Vertex<String> neighbor : vertex.neighbors) {
+      printShortWordsHelper(neighbor, k, visited);
+    }
+  }
+  
+
 
   /**
    * Returns the longest word reachable from the given vertex, including its own value.

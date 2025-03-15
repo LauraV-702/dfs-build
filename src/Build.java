@@ -14,12 +14,8 @@ public class Build {
    * @param k the maximum word length (exclusive)
    */
   public static void printShortWords(Vertex<String> vertex, int k) {
-   
-    if (vertex == null) return;
-
     Set<Vertex<String>> visited = new HashSet<>();
     printShortWordsHelper(vertex, k, visited);
-
   }
   
   public static void printShortWordsHelper(Vertex<String> vertex, int k, Set<Vertex<String>> visited) {
@@ -51,7 +47,15 @@ public class Build {
    * @return the longest reachable word, or an empty string if the vertex is null
    */
   public static String longestWord(Vertex<String> vertex) {
-    return "";
+    
+  }
+  public static void longestWordHelper(Vertex<String> vertex, Set<Vertex<String>> visited) {
+    /*
+    state base case
+    current vertex as visited
+    check and update if the current word is the longest
+    recurisvely visit adjecent vertices
+     */
   }
 
   /**

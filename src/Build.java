@@ -98,7 +98,7 @@ public class Build {
     check if vertex has a self-loop 
     recursively visit adjacent vertices
      */ 
-    if (vertex == null || visited.contains(visited)) return;
+    if (vertex == null || visited.contains(vertex)) return;
 
     visited.add(vertex);
 

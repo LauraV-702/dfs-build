@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -159,6 +160,30 @@ public class Build {
    * @return a set of values that cannot be reached from the starting value
    */
   public static <T> Set<T> unreachable(Map<T, List<T>> graph, T starting) {
-    return new HashSet<>();
+    Set<T> visited = new HashSet<>();
+
+    dfs(graph, starting, visited);
+
+    Set<T> unreachable = new HashSet<>();
+
+    for (T vertex : graph.keySet()) {
+      if (!visited.contains(vertex)) {
+        unreachable.add(vertex);
+      }
+    }
+
+    return unreachable;
+  }
+
+  public static <T> void dfs(Map<T, List<T>> graph, T current, Set<T> visited) {
+    if (visited.contains(current)) {
+      return;
+    }
+
+    visited.add(current);
+
+    for (T neighbor : graph.getOrDefault(current, Collections.emptyList())) {
+      dfs(graph, neighbor, visited);
+    }
   }
 }

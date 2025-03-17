@@ -92,7 +92,23 @@ public class Build {
   }
 
   public static <T> void printSelfLoopersHelper(Vertex<T> vertex, Set<Vertex<T>> visited) {
-    
+    /*
+    state base case
+    current vertex as visited 
+    check if vertex has a self-loop 
+    recursively visit adjacent vertices
+     */ 
+    if (vertex == null || visited.contains(visited)) return;
+
+    visited.add(vertex);
+
+    if (vertex.neighbors.contains(vertex)) {
+      System.out.println(vertex.data);
+    }
+
+    for (Vertex<T> neighbor : vertex.neighbors) {
+      printSelfLoopersHelper(neighbor, visited);
+    }
   }
 
   /**

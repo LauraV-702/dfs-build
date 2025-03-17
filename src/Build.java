@@ -120,7 +120,29 @@ public class Build {
    * @return true if the destination is reachable from the start, false otherwise
    */
   public static boolean canReach(Airport start, Airport destination) {
-    return false;
+    if (start == null || destination == null) return false;
+    if (start == destination) return true;
+
+    Set<Airport> visited = new HashSet<>();
+    return canReachHelperMethod(start, destination, visited);
+  }
+
+  public static boolean canReachHelperMethod(Airport start, Airport destination, Set<Airport> visited) {
+    /*
+    base case
+    current vertex as visited
+    check if any neighbor leads to destination return true
+    recursively visit adjacent verticies or neighboring flights to visit
+     */
+
+    if (start == destination) return true;
+
+    visited.add(start);
+
+    for (Airport neighbor : start.neighbors) {
+    
+    }
+
   }
 
   /**

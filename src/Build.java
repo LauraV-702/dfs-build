@@ -139,10 +139,14 @@ public class Build {
 
     visited.add(start);
 
-    for (Airport neighbor : start.neighbors) {
-    
+    for (Airport neighbor : start.getOutboundFlights()) {
+      if(!visited.contains(neighbor)) {
+        if(canReachHelperMethod(neighbor, destination, visited)) {
+          return true;
+        }
+      }
     }
-
+    return false;
   }
 
   /**
